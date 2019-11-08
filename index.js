@@ -8,7 +8,7 @@ const app = new Koa();
 
 //连接数据库
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/local');
+// mongoose.connect('mongodb://localhost:27017/local');
 var db = mongoose.connection;
 
 db.once('open',function(err){
@@ -122,5 +122,9 @@ app.on('error', err => {
 // 监听端口、启动程序
 app.listen(3000, err => {
     if (err) throw err;
+    const cpus = require('os').cpus();
+    console.log(cpus)
+    process.title='测试进程';
+    console.log('进程id',process.pid)
     console.log('服务启动成功端口3000');
 })
